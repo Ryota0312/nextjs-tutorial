@@ -1,9 +1,9 @@
 import {createGlobalStyle} from "styled-components";
 
-export default function App({ Component, pageProps }) {
+export default function App({Component, pageProps}) {
     return (
         <>
-            <GlobalStyle />
+            <GlobalStyle/>
             <Component {...pageProps} />
         </>
     )
@@ -11,31 +11,31 @@ export default function App({ Component, pageProps }) {
 
 
 const GlobalStyle = createGlobalStyle`
-html,
-body {
+  html,
+  body {
     padding: 0;
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
     Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     line-height: 1.6;
     font-size: 18px;
-}
+  }
 
-* {
+  * {
     box-sizing: border-box;
-}
+  }
 
-a {
+  a {
     color: #0070f3;
     text-decoration: none;
-}
+  }
 
-a:hover {
+  a:hover {
     text-decoration: underline;
-}
+  }
 
-img {
+  img {
     max-width: 100%;
     display: block;
-}
+  }
 `;
