@@ -1,15 +1,14 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from './layout.module.css'
-import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
+import styled from 'styled-components'
 
 const name = 'Ryota Nishi'
 export const siteTitle = 'Next.js Sample Website'
 
 export default function Layout({ children, home }) {
     return (
-        <div className={styles.container}>
+        <Wrapper>
             <Head>
                 <link rel="icon" href="/favicon.ico" />
                 <meta
@@ -25,49 +24,85 @@ export default function Layout({ children, home }) {
                 <meta name="og:title" content={siteTitle} />
                 <meta name="twitter:card" content="summary_large_image" />
             </Head>
-            <header className={styles.header}>
+            <Header>
                 {home ? (
                     <>
-                        <Image
+                        <RoundImage
                             priority
                             src="/images/profile.jpg"
-                            className={utilStyles.borderCircle}
                             height={144}
                             width={144}
                             alt={name}
                         />
-                        <h1 className={utilStyles.heading2Xl}>{name}</h1>
+                        <h1>{name}</h1>
                     </>
                 ) : (
                     <>
                         <Link href="/">
                             <a>
-                                <Image
+                                <RoundImage
                                     priority
                                     src="/images/profile.jpg"
-                                    className={utilStyles.borderCircle}
                                     height={108}
                                     width={108}
                                     alt={name}
                                 />
                             </a>
                         </Link>
-                        <h2 className={utilStyles.headingLg}>
+                        <h2>
                             <Link href="/">
-                                <a className={utilStyles.colorInherit}>{name}</a>
+                                <a>{name}</a>
                             </Link>
                         </h2>
                     </>
                 )}
-            </header>
+            </Header>
             <main>{children}</main>
             {!home && (
-                <div className={styles.backToHome}>
+                <BackToHome>
                     <Link href="/">
                         <a>← Back to home</a>
                     </Link>
-                </div>
+                </BackToHome>
             )}
-        </div>
+        </Wrapper>
     )
 }
+
+const Header = styled.header`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    h1 {
+        font-size: 2.5rem;
+        line-height: 1.2;
+        font-weight: 800;
+        letter-spacing: -0.05rem;
+        margin: 1rem 0;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+        line-height: 1.4;
+        margin: 1rem 0;
+    }
+    
+    a {
+        color: inherit;
+    }
+`;
+
+const RoundImage = styled(Image)`
+    border-radius: 9999px;
+`;
+
+const BackToHome = styled.div`
+    margin: 3rem 0 0;
+`;
+
+const Wrapper = styled.div`
+    max-width: 36rem;
+    padding: 0 1rem;
+    margin: 3rem auto 6rem;
+`;
